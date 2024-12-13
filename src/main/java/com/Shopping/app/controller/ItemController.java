@@ -1,5 +1,6 @@
 package com.Shopping.app.controller;
 
+import com.Shopping.app.dto.ItemDto;
 import com.Shopping.app.entity.Item;
 import com.Shopping.app.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -16,22 +17,22 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<Item> getAllItems() {
+    public List<ItemDto> getAllItems() {
         return itemService.getAllItems();
     }
 
     @GetMapping("/{id}")
-    public Item getItemById(@PathVariable Long id) {
+    public ItemDto getItemById(@PathVariable Long id) {
         return itemService.getItemById(id);
     }
 
     @PostMapping
-    public void createItem(@RequestBody Item item) {
-        try {
-            itemService.createItem(item);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error creating item: " + e.getMessage());
-        }
+    public void createItem(@RequestBody Item itemDto) {
+        itemService.createItem(itemDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        itemService.deleteItem(id);
     }
 }

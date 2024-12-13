@@ -8,13 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ShoppingListItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "shopping_list_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "shopping_list_id", nullable = false)
     private ShoppingList shoppingList;
 
     @ManyToOne
@@ -22,5 +21,5 @@ public class ShoppingListItem {
     private Item item;
 
     @Column(nullable = false)
-    private int quantity;
+    private Integer quantity;
 }

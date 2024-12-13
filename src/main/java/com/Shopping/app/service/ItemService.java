@@ -1,27 +1,17 @@
 package com.Shopping.app.service;
 
+import com.Shopping.app.dto.ItemDto;
 import com.Shopping.app.entity.Item;
-import com.Shopping.app.repository.ItemRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ItemService {
+public interface ItemService {
 
-    private final ItemRepository itemRepository;
+    List<ItemDto> getAllItems();
 
-    public List<Item> getAllItems() {
-        return itemRepository.findAll();
-    }
+    ItemDto getItemById(Long id);
 
-    public Item getItemById(Long id) {
-        return itemRepository.findById(id).orElse(null);
-    }
+    void createItem(Item itemDto);
 
-    public Item createItem(Item item) {
-        return itemRepository.save(item);
-    }
+    void deleteItem(Long id);
 }
